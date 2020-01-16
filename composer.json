@@ -1,0 +1,34 @@
+{
+    "name": "rlgroup/laravel-abilities-controllers",
+    "description": "Aabilities for controllers",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Rl-group",
+            "email": "yehuda.p@rami-levy.co.il"
+        }
+    ],
+    "require": {
+        "php": ">=7.0",
+        "guzzlehttp/guzzle": "~6.0"
+    },
+
+    "require-dev": {
+        "phpunit/phpunit": "~6.0"
+    },
+
+    "autoload": {
+        "psr-4": {
+            "laravel-abilities-controllers\\": "src/"
+        }
+    },
+
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Rlgroup\\Abilities\\AbilitiesServiceProvider"
+            ]
+        }
+    }
+}
+
