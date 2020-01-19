@@ -11,7 +11,7 @@ class GroupAbility extends Model
     public function abilities()
     {
         return $this->morphToMany(
-            'App\Ability',
+            'Rlgroup\Abilities\App\Ability',
             'abilitable'
         )->withPivot('meta');
     }

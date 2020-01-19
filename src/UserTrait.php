@@ -1,13 +1,11 @@
 <?php
 namespace Rlgroup\Abilities;
 
-/*use DB;
-use FluidXml\FluidXml;
-use GuzzleHttp\Client;
-use GuzzleHttp\TransferStats;
-use GuzzleHttp\Exception\RequestException;*/
+//use Rlgroup\Abilities\App\Ability, Rlgroup\Abilities\App\GroupAbility;
 
 trait UserTrait {
+
+
     public function isSuperAdmin()
     {
         return $this->id == 1;
@@ -16,7 +14,7 @@ trait UserTrait {
     public function abilities()
     {
         return $this->morphToMany(
-            'App\Ability',
+            'Rlgroup\Abilities\App\Ability',
             'abilitable'
         )->withPivot('meta');
     }
@@ -24,7 +22,7 @@ trait UserTrait {
     public function groupAbilities()
     {
         return $this->belongsToMany(
-            'App\GroupAbility',
+            'Rlgroup\Abilities\App\GroupAbility',
             'user_group_abilities',
             'user_id',
             'user_group_id'

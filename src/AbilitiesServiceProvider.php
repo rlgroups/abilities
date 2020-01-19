@@ -3,6 +3,7 @@
 namespace Rlgroup\Abilities;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Database\Eloquent\Relations\Relation;
 
 class AbilitiesServiceProvider extends ServiceProvider
 {
@@ -25,6 +26,10 @@ class AbilitiesServiceProvider extends ServiceProvider
     {
         $this->loadMigrationsFrom(__DIR__.'/migrations');
 
+        /*Relation::morphMap([
+            'App\GroupAbility'    => Rlgroup\Abilities\App\GroupAbility::class,
+            'App\Ability'    => Rlgroup\Abilities\App\Ability::class,
+        ]);*/
         /*$this->app->middleware([
                \Vendor\Package\Middleware\TestMiddleware::class
         ]);*/

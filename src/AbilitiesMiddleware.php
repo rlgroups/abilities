@@ -43,7 +43,10 @@ class AbilitiesMiddleware
 
     public function authAbilities()
     {
-        return auth()->user()->getAllAbilities()->keys()->toArray();
+        if(auth()->user()){
+            return auth()->user()->getAllAbilities()->keys()->toArray();
+        }
+        return [];
     }
 
     public function getActions()
@@ -58,7 +61,7 @@ class AbilitiesMiddleware
         // Ability::updateOrCreate(['controller' => $action], []);
 
         foreach ($this->getAllActions() as $action) {
-            Ability::updateOrCreate(['controller' => $action], []);
+            Ability::updateOrCreate(['controller' => $action['controller']], ['name' => $action['name']]);
         }
 
         Cache::forget('actionsRoute');
@@ -71,14 +74,16 @@ class AbilitiesMiddleware
         foreach (Route::getRoutes()->getRoutes() as $route)
         {
             $action = $route->getAction();
-
-            if (array_key_exists('controller', $action)) {
+            if (array_key_exists('controller', $action) && strpos($action['controller'] ,'App\\Http\\Controllers\\Api\\v1\\Admin\\') !== false ) {
                 // You can also use explode('@', $action['controller']); here
                 // to separate the class name from the method
-                $controllers[] = $action['controller'];
+                $controllers[] = [
+                    'controller' => $action['controller'],
+                    'name' => str_replace('App\\Http\\Controllers\\Api\\v1\\Admin\\', '', $action['controller'])
+                ];
             }
         }
-
+        //dd($controllers);
         Cache::forget('actionsRoute');
 
         return $controllers;

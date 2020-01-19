@@ -8,17 +8,13 @@ Install via [composer](http://getcomposer.org) in the root directory of a Larave
 
     composer require rlgroup/laravel-abilities-controllers
 
-Update composer
+migrate
 
-	composer update
-
-Run the package install command
-
-	php artisan package:install
+	$ php artisan migrate
 
 Add to Http/Kernel.php in array $middleware
 
-	Rlgroup\Abilities\AbilitiesMiddleware::class,
+	\Rlgroup\Abilities\AbilitiesMiddleware::class,
 
 Add to user.php
 
