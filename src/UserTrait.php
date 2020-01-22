@@ -29,6 +29,19 @@ trait UserTrait {
         );
     }
 
+    public function isCanAction($action)
+    {
+        if(auth()->user()){
+            $authAbilities = auth()->user()->getAllAbilities()->keys()->toArray();
+
+            if (!in_array('*', $authAbilities) && !in_array($action, $authAbilities)) {
+                return  false;
+            }
+            return  true;
+        }
+        return  false;
+    }
+
     public function getAllAbilities()
     {
         $user = $this->load(['groupAbilities.abilities', 'abilities']);
