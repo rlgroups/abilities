@@ -25,7 +25,7 @@ class AbilitiesServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->loadMigrationsFrom(__DIR__.'/migrations');
-
+        $this->loadRoutesFrom(__DIR__.'/routes.php');
         /*Relation::morphMap([
             'App\GroupAbility'    => Rlgroup\Abilities\App\GroupAbility::class,
             'App\Ability'    => Rlgroup\Abilities\App\Ability::class,

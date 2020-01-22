@@ -39,6 +39,7 @@ class CreateAbilitiesTable extends Migration
             $table->increments('id');
             $table->unsignedBigInteger('user_id')->index();
             $table->unsignedBigInteger('user_group_id')->index();
+            $table->timestamps();
         });
     }
 

@@ -24,7 +24,6 @@ class AbilitiesMiddleware
         }
 
         $authAbilities = $this->authAbilities();
-
         // dd(!in_array($action, $authAbilities));
         // dd(!in_array('*', $authAbilities));
 
