@@ -32,6 +32,8 @@ Add to user.php
 Add on app.js page
 
 	---------------------------------
+	import collect from 'collect.js'
+	
 	Vue.prototype.actionController = (controller, method = null) => {
 	  if (app && app.abilitiesUser) {
 	    if (method) {
