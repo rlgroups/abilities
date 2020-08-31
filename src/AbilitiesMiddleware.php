@@ -57,9 +57,9 @@ class AbilitiesMiddleware
 
     public function updateNewAction($action)
     {
-        // Ability::updateOrCreate(['controller' => $action], []);
+        $allActions = $this->getAllActions();
 
-        foreach ($this->getAllActions() as $action) {
+        foreach ($allActions as $action) {
             Ability::updateOrCreate(['controller' => $action['controller']], ['name' => $action['name']]);
         }
 
@@ -69,16 +69,17 @@ class AbilitiesMiddleware
     public function getAllActions()
     {
         $controllers = [];
+        $routes = Route::getRoutes()->getRoutes();
 
-        foreach (Route::getRoutes()->getRoutes() as $route)
+        foreach ($routes as $route)
         {
             $action = $route->getAction();
-            if (array_key_exists('controller', $action) && strpos($action['controller'] ,'App\\Http\\Controllers\\Api\\v1\\Admin\\') !== false ) {
+            if (array_key_exists('controller', $action) && strpos($action['controller'] ,'App\\Http\\Controllers\\Api\\') !== false ) {
                 // You can also use explode('@', $action['controller']); here
                 // to separate the class name from the method
                 $controllers[] = [
                     'controller' => $action['controller'],
-                    'name' => str_replace('App\\Http\\Controllers\\Api\\v1\\Admin\\', '', $action['controller'])
+                    'name' => str_replace('App\\Http\\Controllers\\Api\\', '', $action['controller'])
                 ];
             }
         }
