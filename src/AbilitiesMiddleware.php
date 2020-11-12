@@ -29,7 +29,7 @@ class AbilitiesMiddleware
 
         if (!in_array('*', $authAbilities) && !in_array($action, $authAbilities)) {
             // if (! auth()->user()->isSuperAdmin()) {
-                abort(401);
+                abort(403);
             // }
             // else {
             //     $ability = Ability::where('controller', $action)->first();
