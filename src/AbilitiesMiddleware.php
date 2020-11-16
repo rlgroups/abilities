@@ -2,7 +2,7 @@
 
 namespace Rlgroup\Abilities;
 
-use Rlgroup\Abilities\App\Ability;
+use Rlgroup\Abilities\Models\Ability;
 use Closure, Route, Cache;
 
 class AbilitiesMiddleware

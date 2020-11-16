@@ -1,6 +1,6 @@
 <?php
 
-namespace Rlgroup\Abilities\App;
+namespace Rlgroup\Abilities\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,7 +11,7 @@ class GroupAbility extends Model
     public function abilities()
     {
         return $this->morphToMany(
-            'Rlgroup\Abilities\App\Ability',
+            'Rlgroup\Abilities\Models\Ability',
             'abilitable'
         )->withPivot('meta');
     }

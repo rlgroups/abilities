@@ -1,6 +1,6 @@
 <?php
 
-namespace Rlgroup\Abilities;
+namespace Rlgroup\Abilities\Controllers;
 
 use App\Http\Controllers\Controller;
 

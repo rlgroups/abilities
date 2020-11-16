@@ -1,12 +1,12 @@
 <?php
-namespace Rlgroup\Abilities\Database\Seeds;
+namespace Rlgroup\Abilities;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-use Rlgroup\Abilities\App\Ability;
-use Rlgroup\Abilities\App\GroupAbility;
-use Rlgroup\Abilities\App\UserGroupAbility;
+use Rlgroup\Abilities\Models\Ability;
+use Rlgroup\Abilities\Models\GroupAbility;
+use Rlgroup\Abilities\Models\UserGroupAbility;
 
 class AbilitiesTableSeeder extends Seeder
 {
