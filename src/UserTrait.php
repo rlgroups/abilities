@@ -14,7 +14,7 @@ trait UserTrait {
     public function abilities()
     {
         return $this->morphToMany(
-            'Rlgroup\Abilities\App\Ability',
+            'Rlgroup\Abilities\Models\Ability',
             'abilitable'
         )->withPivot('meta');
     }
@@ -22,7 +22,7 @@ trait UserTrait {
     public function groupAbilities()
     {
         return $this->belongsToMany(
-            'Rlgroup\Abilities\App\GroupAbility',
+            'Rlgroup\Abilities\Models\GroupAbility',
             'user_group_abilities',
             'user_id',
             'user_group_id'
