@@ -16,7 +16,6 @@ class AbilitiesMiddleware
      */
     public function handle($request, Closure $next)
     {
-        // dd($this->getAllActions());
         $action = Route::currentRouteAction();
 
         if (!in_array($action, $this->getActions())) {
@@ -24,17 +23,9 @@ class AbilitiesMiddleware
         }
 
         $authAbilities = $this->authAbilities();
-        // dd(!in_array($action, $authAbilities));
-        // dd(!in_array('*', $authAbilities));
 
         if (!in_array('*', $authAbilities) && !in_array($action, $authAbilities)) {
-            // if (! auth()->user()->isSuperAdmin()) {
-                abort(403);
-            // }
-            // else {
-            //     $ability = Ability::where('controller', $action)->first();
-            //     auth()->user()->abilities()->attach($ability->id);
-            // }
+            abort(403);
         }
 
         return $next($request);
@@ -42,7 +33,12 @@ class AbilitiesMiddleware
 
     public function authAbilities()
     {
-        if(auth()->user()){
+        $config = config('abilities');
+        $authGuard = $config['auth_guard'] ?? '';
+
+        if($authGuard){
+            return auth()->guard($authGuard)->user()->getAllAbilities()->keys()->toArray();
+        } else if(auth()->user()){
             return auth()->user()->getAllAbilities()->keys()->toArray();
         }
         return [];
@@ -83,7 +79,6 @@ class AbilitiesMiddleware
                 ];
             }
         }
-        //dd($controllers);
         Cache::forget('actionsRoute');
 
         return $controllers;

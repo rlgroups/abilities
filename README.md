@@ -11,10 +11,10 @@ Install via [composer](http://getcomposer.org) in the root directory of a Larave
 migrate
 
 	$ php artisan migrate
-	
-run 
 
-	$ php artisan db:seed --class="Rlgroup\\Abilities\\Database\\Seeds\\AbilitiesTableSeeder"
+run
+
+	$ php artisan db:seed --class="Rlgroup\\Abilities\\AbilitiesTableSeeder"
 
 Add to Http/Kernel.php in array $routeMiddleware
 
@@ -33,7 +33,7 @@ Add on app.js page
 
 	---------------------------------
 	import collect from 'collect.js'
-	
+
 	Vue.prototype.actionController = (controller, method = null) => {
 	  if (app && app.abilitiesUser) {
 	    if (method) {
@@ -99,4 +99,11 @@ Add on app.js page
 And wherever client side testing (VUE) is needed
 
 	actionController (action,method)
+
+	------------------------------------------------
+
+If the project with the GUARD connection must add the GUARD value to the ENV file
+
+	AUTH_GUARD=
+
 

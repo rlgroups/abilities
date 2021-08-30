@@ -24,6 +24,8 @@ class AbilitiesServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->registerConfig();
+
         $this->loadMigrationsFrom(__DIR__.'/migrations');
         $this->loadRoutesFrom(__DIR__.'/routes.php');
         /*Relation::morphMap([
@@ -33,5 +35,15 @@ class AbilitiesServiceProvider extends ServiceProvider
         /*$this->app->middleware([
                \Vendor\Package\Middleware\TestMiddleware::class
         ]);*/
+    }
+
+    protected function registerConfig()
+    {
+        $this->publishes([
+            __DIR__.'/../Config/config.php' => config_path('abilities.php'),
+        ], 'config');
+        $this->mergeConfigFrom(
+            __DIR__.'/../Config/config.php', 'abilities'
+        );
     }
 }
