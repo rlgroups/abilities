@@ -40,10 +40,10 @@ class AbilitiesServiceProvider extends ServiceProvider
     protected function registerConfig()
     {
         $this->publishes([
-            __DIR__.'/../Config/config.php' => config_path('abilities.php'),
+            __DIR__.'/Config/config.php' => config_path('abilities.php'),
         ], 'config');
         $this->mergeConfigFrom(
-            __DIR__.'/../Config/config.php', 'abilities'
+            __DIR__.'/Config/config.php', 'abilities'
         );
     }
 }
