@@ -23,6 +23,9 @@ class AbilitiesMiddleware
         }
 
         $authAbilities = $this->authAbilities();
+        if(!$authAbilities){//User not found
+            abort(401);
+        }
 
         if (!in_array('*', $authAbilities) && !in_array($action, $authAbilities)) {
             abort(403);
@@ -36,12 +39,20 @@ class AbilitiesMiddleware
         $config = config('abilities');
         $authGuard = $config['auth_guard'] ?? '';
 
-        if($authGuard && auth()->guard($authGuard)->user()){
-            return auth()->guard($authGuard)->user()->getAllAbilities()->keys()->toArray();
-        } else if(!$authGuard && auth()->user()){
-            return auth()->user()->getAllAbilities()->keys()->toArray();
+        if($authGuard){
+            if(auth()->guard($authGuard)->user()){
+                return auth()->guard($authGuard)->user()->getAllAbilities()->keys()->toArray();
+            } else {
+                return null;
+            }
+        } else {
+            if(auth()->user()){
+                return auth()->user()->getAllAbilities()->keys()->toArray();
+            } else {
+                return null;
+            }
         }
-        return [];
+        // return [];
     }
 
     public function getActions()
