@@ -36,9 +36,9 @@ class AbilitiesMiddleware
         $config = config('abilities');
         $authGuard = $config['auth_guard'] ?? '';
 
-        if($authGuard){
+        if($authGuard && auth()->guard($authGuard)->user()){
             return auth()->guard($authGuard)->user()->getAllAbilities()->keys()->toArray();
-        } else if(auth()->user()){
+        } else if(!$authGuard && auth()->user()){
             return auth()->user()->getAllAbilities()->keys()->toArray();
         }
         return [];
